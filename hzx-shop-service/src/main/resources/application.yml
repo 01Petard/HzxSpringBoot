@@ -58,7 +58,6 @@ hzx:
     admin-secret-key: hzx_admin  # 设置jwt签名加密时使用的秘钥
     admin-ttl: 7200000           # 设置jwt过期时间
     admin-token-name: token      # 设置前端传递过来的令牌名称
-
     user-secret-key: hzx_user
     user-ttl: 7200000
     user-token-name: authentication
@@ -74,7 +73,6 @@ hzx:
     endpoint: ${hzx.alisms.endpoint}
     signName: ${hzx.alisms.signName}
     templateCode: ${hzx.alisms.templateCode}
-
   wechat:
     appid: ${hzx.wechat.appid}
     secret: ${hzx.wechat.secret}
@@ -85,6 +83,5 @@ hzx:
     we-chat-pay-cert-file-path: ${hzx.wechat.we-chat-pay-cert-file-path}
     notify-url: ${hzx.wechat.notify-url}
     refund-notify-url: ${hzx.wechat.refund-notify-url}
-#alibaba.cloud.oss.endpoint=oss-cn-hangzhou.aliyuncs.com
 
 

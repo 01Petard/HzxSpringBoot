@@ -23,6 +23,7 @@ import com.hzx.model.entity.User;
 import com.hzx.model.vo.UserLoginVO;
 import com.hzx.service.MessageService;
 import com.hzx.service.UserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -42,19 +43,20 @@ import java.util.List;
 @Service
 @Transactional
 @Slf4j
+@RequiredArgsConstructor
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
-    @Resource
-    private UserMapper userMapper;
+//    @Resource
+    private final UserMapper userMapper;
 
-    @Resource
-    private JwtUtil jwtUtil;
+//    @Resource
+    private final JwtUtil jwtUtil;
 
-    @Resource
-    private RedisTemplate redisTemplate;
+//    @Resource
+    private final RedisTemplate redisTemplate;
 
-    @Resource
-    private MessageService messageService;
+//    @Resource
+    private final MessageService messageService;
 
 
     @Override

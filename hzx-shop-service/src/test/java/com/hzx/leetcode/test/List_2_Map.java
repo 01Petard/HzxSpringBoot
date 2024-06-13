@@ -3,6 +3,7 @@ package com.hzx.leetcode.test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 class demo_Person {
@@ -26,8 +27,6 @@ class demo_Person {
 }
 public class List_2_Map {
 
-
-
     public static void main(String[] args) {
         List<demo_Person> bookList = new ArrayList<>();
         bookList.add(new demo_Person("jack", "18163138123"));
@@ -41,7 +40,6 @@ public class List_2_Map {
                         person -> person.getPhoneNumber() != null ? person.getPhoneNumber() : "",
                         (existing, replacement) -> replacement)
                 );
-
 
         // 打印Map
         phoneBook.forEach((name, phoneNumber) -> System.out.println(name + ": " + phoneNumber));

@@ -9,33 +9,21 @@ public class Test_1234 {
      static class B{
 
          static {
-
              System.out.println("static B");
          }
-
          {
-
              System.out.println("B");
          }
-
-
-
         public B(){
-
             System.out.println("create B");
-
         }
 
          public void say(){
-
              System.out.println("say B");
-
          }
 
          public void run(){
-
              System.out.println("run B");
-
          }
 
 
@@ -43,22 +31,15 @@ public class Test_1234 {
 
 
     static class A extends B{
-
         static {
-
             System.out.println("static A");
         }
-
         {
-
             System.out.println("A");
         }
 
-
         public A(){
-
             System.out.println("create A");
-
         }
 
         public void say(){

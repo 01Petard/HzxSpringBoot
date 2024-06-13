@@ -1,5 +1,6 @@
 package com.hzx.controller.v1;
 
+import com.hzx.common.annotation.HzxLog;
 import com.hzx.common.context.BaseContext;
 import com.hzx.common.result.PageResult;
 import com.hzx.common.result.Result;
@@ -39,7 +40,8 @@ public class UserController {
     }
 
 
-    @GetMapping("/page")
+    @GetMapping("/list")
+    @HzxLog
     public Result<PageResult> page(@RequestBody UserPageQueryDto userPageQueryDto) {
         log.info("用户分页查询，参数为：{}", userPageQueryDto);
         PageResult pageResult = userService.pageQuery(userPageQueryDto);

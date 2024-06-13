@@ -43,7 +43,8 @@ public class AuthController {
         redisTemplate.opsForValue().set("code:" + phone, code, 5, TimeUnit.MINUTES);
 
         // 3.调用阿里云服务，发送验证码
-        Boolean isMessageSendOK = aliSmsUtil.sendSms(phone, code);
+//        Boolean isMessageSendOK = aliSmsUtil.sendSms(phone, code);
+        Boolean isMessageSendOK = true;
 
         // 4.返回结果
         if (isMessageSendOK){
