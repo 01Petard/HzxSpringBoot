@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @SpringBootTest
-class HzxShopApplicationTests {
+class Tests_HzxShopApplication {
 
     @Test
     void generateRandomNumber() {
