@@ -1,8 +1,9 @@
 package com.hzx.config;
 
+import com.hzx.common.json.JacksonObjectMapper;
 import com.hzx.interceptor.JwtTokenAdminInterceptor;
 import com.hzx.interceptor.JwtTokenUserInterceptor;
-import com.hzx.common.json.JacksonObjectMapper;
+import com.hzx.interceptor.LoggerInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -40,6 +41,11 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      */
     protected void addInterceptors(InterceptorRegistry registry) {
         log.info("开始注册自定义拦截器...");
+
+        LoggerInterceptor loggerInterceptor = new LoggerInterceptor();
+        registry.addInterceptor(loggerInterceptor)
+                .addPathPatterns("/**");
+
         registry.addInterceptor(jwtTokenAdminInterceptor)
                 .addPathPatterns("/admin/**")
                 .excludePathPatterns("/admin/employee/login");
@@ -48,48 +54,47 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .addPathPatterns("/user/**")
                 .excludePathPatterns("/user/login/**")
                 .excludePathPatterns("/user/auth/**");
-//                .addPathPatterns("/user/**")
-//                .excludePathPatterns("/user/user/login")
-//                .excludePathPatterns("/user/shop/status")
-//                .excludePathPatterns("/user/register")
-//                .excludePathPatterns("/user/login")
     }
 
     /**
-     * 通过knife4j生成接口文档
+     * 通过knife4j生成管理员接口文档
      * @return
      */
     @Bean
     public Docket docket_admin() {
         log.info("准备生成接口文档...");
         ApiInfo apiInfo = new ApiInfoBuilder()
-                .title("苍穹外卖项目接口文档")
+                .title("HzxSpringBoot项目接口文档")
                 .version("2.0")
-                .description("苍穹外卖项目接口文档")
+                .description("HzxSpringBoot项目接口文档")
                 .build();
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .groupName("管理端")
                 .apiInfo(apiInfo)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sky.controller.admin"))
+                .apis(RequestHandlerSelectors.basePackage("com.hzx.controller.admin"))
                 .paths(PathSelectors.any())
                 .build();
         return docket;
     }
 
+    /**
+     * 通过knife4j生成用户接口文档
+     * @return
+     */
     @Bean
     public Docket docket_user() {
         log.info("准备生成接口文档...");
         ApiInfo apiInfo = new ApiInfoBuilder()
-                .title("苍穹外卖项目接口文档")
+                .title("HzxSpringBoot项目接口文档")
                 .version("2.0")
-                .description("苍穹外卖项目接口文档")
+                .description("HzxSpringBoot项目接口文档")
                 .build();
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .groupName("用户端")
                 .apiInfo(apiInfo)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sky.controller.user"))
+                .apis(RequestHandlerSelectors.basePackage("com.hzx.controller.user"))
                 .paths(PathSelectors.any())
                 .build();
         return docket;
