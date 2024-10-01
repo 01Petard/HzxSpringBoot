@@ -29,6 +29,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,20 +44,20 @@ import java.util.List;
 @Service
 @Transactional
 @Slf4j
-@RequiredArgsConstructor
+//@RequiredArgsConstructor  final
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
-//    @Resource
-    private final UserMapper userMapper;
+    @Resource
+    private UserMapper userMapper;
 
-//    @Resource
-    private final JwtUtil jwtUtil;
+    @Resource
+    private JwtUtil jwtUtil;
 
-//    @Resource
-    private final RedisTemplate redisTemplate;
+    @Resource
+    private StringRedisTemplate redisTemplate;
 
-//    @Resource
-    private final MessageService messageService;
+    @Resource
+    private MessageService messageService;
 
 
     @Override

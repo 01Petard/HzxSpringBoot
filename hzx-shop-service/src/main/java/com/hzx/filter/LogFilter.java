@@ -3,6 +3,7 @@ package com.hzx.filter;
 import org.slf4j.MDC;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -17,14 +18,11 @@ import java.io.IOException;
  * 对于服务器内部之间的forward等请求，不会再次执行过滤方法。
  */
 @Configuration
-public class LogFilter extends OncePerRequestFilter implements Ordered {
+@Order(Ordered.HIGHEST_PRECEDENCE)
+public class LogFilter extends OncePerRequestFilter {
 
     private final static String MDC_TRACE_ID = "traceId";
 
-    @Override
-    public int getOrder() {
-        return Ordered.HIGHEST_PRECEDENCE;
-    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
