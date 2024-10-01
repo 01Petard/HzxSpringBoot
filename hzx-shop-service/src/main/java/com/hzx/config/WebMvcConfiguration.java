@@ -4,6 +4,7 @@ import com.hzx.common.json.JacksonObjectMapper;
 import com.hzx.interceptor.JwtTokenAdminInterceptor;
 import com.hzx.interceptor.JwtTokenUserInterceptor;
 import com.hzx.interceptor.LoggerInterceptor;
+import com.hzx.interceptor.RepeatSubmitInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -43,6 +45,9 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     @Autowired
     private JwtTokenUserInterceptor jwtTokenUserInterceptor;
 
+    @Autowired
+    private RepeatSubmitInterceptor repeatSubmitInterceptor;
+
     /**
      * 注册自定义拦截器
      * @param registry
@@ -62,6 +67,8 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .addPathPatterns("/user/**")
                 .excludePathPatterns("/user/login/**")
                 .excludePathPatterns("/user/auth/**");
+        registry.addInterceptor(repeatSubmitInterceptor)
+                .addPathPatterns("/hello/**");
     }
 
     /**
