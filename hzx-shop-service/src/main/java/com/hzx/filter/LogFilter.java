@@ -8,6 +8,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.io.IOException;
  * 对于服务器内部之间的forward等请求，不会再次执行过滤方法。
  */
 @Configuration
+@WebFilter(urlPatterns = "/*")
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class LogFilter extends OncePerRequestFilter {
 
